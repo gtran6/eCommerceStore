@@ -33,6 +33,9 @@ class HomeAdapter(val list: List<ApiResponseItem>) : RecyclerView.Adapter<HomeAd
                 val data = HomeFragmentDirections.actionNavHomeToDetailFragment(item)
                 findNavController(view).navigate(data)
             }
+            heartIcon.setOnClickListener {
+
+            }
         }
     }
 }

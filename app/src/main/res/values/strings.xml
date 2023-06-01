@@ -16,4 +16,9 @@
     <string name="title_title_title_title">Title title title title</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="men_s_clothing">men\'s clothing</string>
+    <string name="favorite">Favorite</string>
+    <string name="user">User</string>
+    <string name="_3_4">3.4</string>
+    <string name="_14_5">14.5</string>
+    <string name="description">Description</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.myprojects.ecommercestore.ui.gallery
+package com.myprojects.ecommercestore.ui.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

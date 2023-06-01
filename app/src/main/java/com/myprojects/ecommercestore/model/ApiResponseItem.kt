@@ -1,11 +1,15 @@
 package com.myprojects.ecommercestore.model
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.Gson
 
+@Entity(tableName = "product_table")
 data class ApiResponseItem(
     val category: String,
     val description: String,
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val image: String,
     val price: Double,

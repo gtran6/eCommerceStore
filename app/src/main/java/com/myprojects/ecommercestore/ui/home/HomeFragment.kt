@@ -32,8 +32,10 @@ class HomeFragment : Fragment() {
 
         _binding!!.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                search = query!!
-                homeViewModel.getAllProductData(search)
+                query?.let {
+                    search = it
+                    homeViewModel.getAllProductData(search)
+                }
                 return false
             }
 
