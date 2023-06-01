@@ -35,5 +35,9 @@
         android:id="@+id/detailFragment"
         android:name="com.myprojects.ecommercestore.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="data"
+            app:argType="com.myprojects.ecommercestore.model.ApiResponseItem" />
+    </fragment>
 </navigation>

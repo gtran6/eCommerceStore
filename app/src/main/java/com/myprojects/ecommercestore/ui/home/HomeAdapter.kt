@@ -3,7 +3,6 @@ package com.myprojects.ecommercestore.ui.home
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -31,8 +30,8 @@ class HomeAdapter(val list: List<ApiResponseItem>) : RecyclerView.Adapter<HomeAd
             brandTextView.text = item.title
 
             layout.setOnClickListener { view ->
-                val action = HomeFragmentDirections.actionNavHomeToDetailFragment()
-                findNavController(view).navigate(action)
+                val data = HomeFragmentDirections.actionNavHomeToDetailFragment(item)
+                findNavController(view).navigate(data)
             }
         }
     }
