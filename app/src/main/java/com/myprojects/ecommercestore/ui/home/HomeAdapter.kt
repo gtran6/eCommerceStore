@@ -3,6 +3,8 @@ package com.myprojects.ecommercestore.ui.home
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,7 +39,26 @@ class HomeAdapter(val list: List<ApiResponseItem>, val onFavoriteClickListener: 
                 findNavController(view).navigate(data)
             }
             heartIcon.setOnClickListener {
-                onFavoriteClickListener.onFavoriteClick(item)
+                val scaleAnimation = ScaleAnimation(
+                    1.0f, 0.8f, // Start and end scale X
+                    1.0f, 0.8f, // Start and end scale Y
+                    Animation.RELATIVE_TO_SELF, 0.5f, // Pivot X
+                    Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y
+                ).apply {
+                    duration = 200
+                    repeatMode = Animation.REVERSE
+                    repeatCount = 1
+                }
+                scaleAnimation.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+
+                    override fun onAnimationEnd(animation: Animation) {
+                        onFavoriteClickListener.onFavoriteClick(item)
+                    }
+
+                    override fun onAnimationRepeat(animation: Animation) {}
+                })
+                heartIcon.startAnimation(scaleAnimation)
             }
         }
     }

@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.observeOn
 
 @AndroidEntryPoint
-class FavoriteFragment : Fragment(), HomeAdapter.OnFavoriteClickListener {
+class FavoriteFragment : Fragment(), HomeAdapter.OnFavoriteClickListener, FavoriteAdapter.OnDeleteClickListener {
 
     private var _binding: FragmentFavBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +36,7 @@ class FavoriteFragment : Fragment(), HomeAdapter.OnFavoriteClickListener {
     }
 
     private fun setRecyclerView(list: List<ApiResponseItem>) = _binding!!.favRcv.apply {
-        adapter = FavoriteAdapter(list)
+        adapter = FavoriteAdapter(list, this@FavoriteFragment)
         layoutManager = LinearLayoutManager(requireContext())
     }
 
@@ -47,5 +47,9 @@ class FavoriteFragment : Fragment(), HomeAdapter.OnFavoriteClickListener {
 
     override fun onFavoriteClick(item: ApiResponseItem) {
         favoriteViewModel.addItem(item)
+    }
+
+    override fun OnDeleteClick(item: ApiResponseItem) {
+        favoriteViewModel.deleteItem(item)
     }
 }
