@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.appcompat.widget.SearchView
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeAdapter.OnFavoriteClickListener{
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -59,12 +59,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun setRecyclerView(list: List<ApiResponseItem>) = _binding!!.mainRcv.apply {
-        adapter = HomeAdapter(list)
+        adapter = HomeAdapter(list, this@HomeFragment)
         layoutManager = GridLayoutManager(context, 2)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onFavoriteClick(item: ApiResponseItem) {
+        homeViewModel.addItemToFavorites(item)
     }
 }

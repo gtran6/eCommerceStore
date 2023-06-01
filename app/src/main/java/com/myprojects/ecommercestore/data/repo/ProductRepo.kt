@@ -1,5 +1,6 @@
 package com.myprojects.ecommercestore.data.repo
 
+import androidx.lifecycle.LiveData
 import com.myprojects.ecommercestore.data.api.ApiInterface
 import com.myprojects.ecommercestore.data.local.FavoriteDao
 import com.myprojects.ecommercestore.model.ApiResponse
@@ -22,5 +23,5 @@ class ProductRepo @Inject constructor(val apiInterface: ApiInterface, val favDao
 
     suspend fun deleteItem(item: ApiResponseItem) = favDao.delete(item)
 
-    fun getAllItems() = favDao.getFavoriteItems()
+    fun getAllItems(): LiveData<List<ApiResponseItem>> = favDao.getFavoriteItems()
 }

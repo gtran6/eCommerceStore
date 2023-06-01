@@ -39,4 +39,10 @@ class HomeViewModel @Inject constructor(val productRepo: ProductRepo) : ViewMode
             }
         }
     }
+
+    fun addItemToFavorites(item: ApiResponseItem) {
+        viewModelScope.launch {
+            productRepo.insertItem(item)
+        }
+    }
 }

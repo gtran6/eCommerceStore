@@ -9,7 +9,7 @@
             android:icon="@drawable/home_ic"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_fav"
             android:icon="@drawable/heart"
             android:title="@string/favorite" />
         <item

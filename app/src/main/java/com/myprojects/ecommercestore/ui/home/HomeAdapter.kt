@@ -9,9 +9,12 @@ import com.bumptech.glide.Glide
 import com.myprojects.ecommercestore.databinding.ItemMainBinding
 import com.myprojects.ecommercestore.model.ApiResponseItem
 
-class HomeAdapter(val list: List<ApiResponseItem>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter(val list: List<ApiResponseItem>, val onFavoriteClickListener: OnFavoriteClickListener) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     class HomeViewHolder(var binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)
+    interface OnFavoriteClickListener {
+        fun onFavoriteClick(item: ApiResponseItem)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(ItemMainBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -34,7 +37,7 @@ class HomeAdapter(val list: List<ApiResponseItem>) : RecyclerView.Adapter<HomeAd
                 findNavController(view).navigate(data)
             }
             heartIcon.setOnClickListener {
-
+                onFavoriteClickListener.onFavoriteClick(item)
             }
         }
     }
