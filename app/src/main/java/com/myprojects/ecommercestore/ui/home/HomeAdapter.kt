@@ -3,6 +3,8 @@ package com.myprojects.ecommercestore.ui.home
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.myprojects.ecommercestore.databinding.ItemMainBinding
@@ -27,6 +29,11 @@ class HomeAdapter(val list: List<ApiResponseItem>) : RecyclerView.Adapter<HomeAd
             Glide.with(holder.itemView).load(item.image).into(phonePreviewImageView)
             newPriceTextView.text = "$${item.price}"
             brandTextView.text = item.title
+
+            layout.setOnClickListener { view ->
+                val action = HomeFragmentDirections.actionNavHomeToDetailFragment()
+                findNavController(view).navigate(action)
+            }
         }
     }
 }

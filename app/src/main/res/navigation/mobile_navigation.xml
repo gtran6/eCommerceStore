@@ -9,7 +9,16 @@
         android:id="@+id/nav_home"
         android:name="com.myprojects.ecommercestore.ui.home.HomeFragment"
         android:label=""
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="data"
+            android:defaultValue="@null"
+            app:argType="com.myprojects.ecommercestore.model.ApiResponseItem"
+            app:nullable="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -22,4 +31,9 @@
         android:name="com.myprojects.ecommercestore.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.myprojects.ecommercestore.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
