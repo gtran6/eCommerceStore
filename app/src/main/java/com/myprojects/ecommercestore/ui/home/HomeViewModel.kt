@@ -1,13 +1,42 @@
 package com.myprojects.ecommercestore.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.myprojects.ecommercestore.data.repo.ProductRepo
+import com.myprojects.ecommercestore.model.ApiResponse
+import com.myprojects.ecommercestore.model.ApiResponseItem
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(val productRepo: ProductRepo) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    val allProductData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
+    val singleProductData: MutableLiveData<ApiResponseItem> = MutableLiveData()
+
+    fun getAllProductData(sort: String) {
+        viewModelScope.launch {
+            productRepo.getAllProductsFromServer(sort).catch {
+                Log.e("api-products", "get: ${it.localizedMessage}")
+            }.collect { list ->
+                allProductData.value = list
+            }
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun getSingleProductData() {
+        viewModelScope.launch {
+            productRepo.getSingleProductFromServer().catch {
+                Log.e("api-single-product", "get: ${it.localizedMessage}")
+            }.collect { product ->
+                singleProductData.value = product
+            }
+        }
+    }
 }

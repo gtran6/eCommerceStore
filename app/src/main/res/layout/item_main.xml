@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/phonePreviewImageView"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:scaleType="fitCenter"
             tools:src="@tools:sample/avatars"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,23 +47,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:text="148"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phonePreviewImageView" />
-
-        <TextView
-            android:id="@+id/oldPriceTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:text="164"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="@+id/newPriceTextView"
-            app:layout_constraintStart_toEndOf="@+id/newPriceTextView"
-            app:layout_constraintTop_toTopOf="@+id/newPriceTextView" />
 
         <TextView
             android:id="@+id/brandTextView"

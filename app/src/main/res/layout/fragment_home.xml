@@ -18,16 +18,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="18dp"
-                android:background="@drawable/gradient_bg"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="18dp">
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            </ImageView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/itemImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:foreground="@drawable/gradient_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@tools:sample/avatars">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/itemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Title"
+                        android:textSize="22sp"
+                        android:textColor="@color/white"
+                        android:lines="1"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                    </TextView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
@@ -37,10 +74,47 @@
                 android:background="@drawable/search_bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
                 app:queryHint="Search something...">
 
             </androidx.appcompat.widget.SearchView>
+
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+                android:id="@+id/toggleButtonGroup"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="6dp"
+                android:layout_margin="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView"
+                app:toggle_requiredAmount="1">
+
+                <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                    android:id="@+id/menButton"
+                    style="@style/ToggleButtonTheme"
+                    app:toggle_icon="@drawable/ic_phone"
+                    app:toggle_text="phoneButton" />
+
+                <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                    android:id="@+id/electronicButton"
+                    style="@style/ToggleButtonTheme"
+                    app:toggle_icon="@drawable/ic_computer"
+                    app:toggle_text="computerButton" />
+
+                <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                    android:id="@+id/womenButton"
+                    style="@style/ToggleButtonTheme"
+                    app:toggle_icon="@drawable/ic_health"
+                    app:toggle_text="healthButton" />
+
+                <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                    android:id="@+id/jewelryButton"
+                    style="@style/ToggleButtonTheme"
+                    app:toggle_icon="@drawable/ic_books"
+                    app:toggle_text="booksButton" />
+
+            </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_rcv"
@@ -49,7 +123,7 @@
                 android:layout_margin="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchView"
+                app:layout_constraintTop_toBottomOf="@+id/toggleButtonGroup"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/item_main">
