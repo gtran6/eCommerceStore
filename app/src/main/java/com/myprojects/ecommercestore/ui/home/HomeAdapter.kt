@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.myprojects.ecommercestore.R
 import com.myprojects.ecommercestore.databinding.ItemMainBinding
 import com.myprojects.ecommercestore.model.ApiResponseItem
 
