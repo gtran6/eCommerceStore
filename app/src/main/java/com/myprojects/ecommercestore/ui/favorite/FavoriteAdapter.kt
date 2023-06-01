@@ -3,6 +3,7 @@ package com.myprojects.ecommercestore.ui.favorite
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.myprojects.ecommercestore.databinding.ItemFavBinding
@@ -27,6 +28,11 @@ class FavoriteAdapter(val list: List<ApiResponseItem>) : RecyclerView.Adapter<Fa
             Glide.with(holder.itemView).load(item.image).into(phonePreviewImageView)
             newPriceTextView.text = "$${item.price}"
             brandTextView.text = item.title
+
+            layout.setOnClickListener {  view ->
+                val data = FavoriteFragmentDirections.actionNavFavToDetailFragment(item)
+                findNavController(view).navigate(data)
+            }
         }
     }
 }

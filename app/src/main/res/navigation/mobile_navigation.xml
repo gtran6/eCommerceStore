@@ -31,6 +31,9 @@
         <argument
             android:name="data"
             app:argType="com.myprojects.ecommercestore.model.ApiResponseItem" />
+        <action
+            android:id="@+id/action_nav_fav_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 
     <fragment
