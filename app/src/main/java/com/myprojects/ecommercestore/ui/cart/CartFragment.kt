@@ -30,6 +30,10 @@ class CartFragment : Fragment() {
         cartViewModel.allAddedItems.observe(viewLifecycleOwner, Observer { list ->
             setRecyclerView(list)
         })
+
+        cartViewModel.cartItemCount.observe(viewLifecycleOwner, Observer { itemCount ->
+
+        })
         return root
     }
 
