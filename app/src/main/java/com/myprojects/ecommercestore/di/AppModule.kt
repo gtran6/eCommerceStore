@@ -5,6 +5,8 @@ import com.myprojects.ecommercestore.data.api.ApiInterface
 import com.myprojects.ecommercestore.data.local.AppDatabase
 import com.myprojects.ecommercestore.data.local.FavoriteDao
 import com.myprojects.ecommercestore.data.repo.ProductRepo
+import com.myprojects.ecommercestore.model.ApiResponseItem
+import com.myprojects.ecommercestore.ui.cart.CartAdapter
 import com.myprojects.ecommercestore.utils.Utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -40,4 +42,14 @@ object AppModule {
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext applicationContext: Context) = AppDatabase.getItemDatabase(applicationContext)
+
+    @Singleton
+    @Provides
+    fun provideCartAdapter(): CartAdapter {
+        val onCancelClickListener: CartAdapter.OnCancelClickListener = object : CartAdapter.OnCancelClickListener {
+            override fun OnCancelClick(item: ApiResponseItem) {
+            }
+        }
+        return CartAdapter(emptyList(), onCancelClickListener)
+    }
 }

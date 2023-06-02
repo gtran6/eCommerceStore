@@ -34,6 +34,18 @@ class CartAdapter(val list: List<ApiResponseItem>, val onCancelClickListener: On
             cancel.setOnClickListener {
                 onCancelClickListener.OnCancelClick(item)
             }
+
+            btnIncrease.setOnClickListener {
+                item.quantity++
+                tvItemCount.text = item.quantity.toString()
+            }
+
+            btnDecrease.setOnClickListener {
+                if (item.quantity > 0) {
+                    item.quantity--
+                    tvItemCount.text = item.quantity.toString()
+                }
+            }
         }
     }
 }

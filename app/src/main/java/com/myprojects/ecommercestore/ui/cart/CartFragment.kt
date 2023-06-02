@@ -31,8 +31,6 @@ class CartFragment : Fragment(), CartAdapter.OnCancelClickListener {
             setRecyclerView(list)
         })
 
-
-
         return root
     }
 

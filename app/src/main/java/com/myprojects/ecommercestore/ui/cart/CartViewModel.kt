@@ -1,5 +1,6 @@
 package com.myprojects.ecommercestore.ui.cart
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,11 +12,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CartViewModel @Inject constructor(val productRepo: ProductRepo) : ViewModel() {
+class CartViewModel @Inject constructor(val productRepo: ProductRepo, val cartAdapter: CartAdapter) : ViewModel() {
 
     val allAddedItems: LiveData<List<ApiResponseItem>> = productRepo.getAllItems()
     private val cartItems: MutableList<ApiResponseItem> = mutableListOf()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addItemToCart(item: ApiResponseItem) {
         viewModelScope.launch {
             val existingItem = cartItems.find { it.id == item.id }
@@ -25,6 +27,7 @@ class CartViewModel @Inject constructor(val productRepo: ProductRepo) : ViewMode
                 item.quantity = 1
                 cartItems.add(item)
             }
+            cartAdapter.notifyDataSetChanged()
             productRepo.updateItems(cartItems)
         }
     }
