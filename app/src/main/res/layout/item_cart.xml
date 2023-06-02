@@ -26,7 +26,7 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:scaleType="fitCenter"
                 tools:src="@tools:sample/avatars">
 
@@ -93,33 +93,34 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginEnd="12dp"
+            android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="@+id/price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/price">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnDecrease"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="#F0F0F6"
+                android:layout_width="35dp"
+                android:layout_height="25dp"
                 android:text="-"
+                android:background="@drawable/outline_bg"
                 android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/tvItemCount"
                 android:layout_width="35dp"
-                android:layout_height="40dp"
+                android:layout_height="25dp"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="16sp"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnIncrease"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="#F0F0F6"
+                android:layout_width="35dp"
+                android:layout_height="25dp"
                 android:text="+"
+                android:background="@drawable/outline_bg"
                 android:textAlignment="center"/>
 
         </LinearLayout>
