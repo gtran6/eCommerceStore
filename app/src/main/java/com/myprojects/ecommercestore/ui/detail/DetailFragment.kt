@@ -6,14 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.myprojects.ecommercestore.databinding.FragmentDetailBinding
+import com.myprojects.ecommercestore.ui.favorite.FavoriteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val args: DetailFragmentArgs by navArgs()
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +37,10 @@ class DetailFragment : Fragment() {
             category.text = item.category
             rating.rating = item.rating.rate.toFloat()
             count.text = item.rating.count.toString()
+
+            heartIcon.setOnClickListener {
+                favoriteViewModel.addItem(item)
+            }
         }
         return root
     }

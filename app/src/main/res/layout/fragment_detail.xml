@@ -72,13 +72,13 @@
             android:layout_height="wrap_content"
             android:text="@string/_3_4"
             app:layout_constraintBottom_toBottomOf="@+id/rating"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/heartIcon"
             app:layout_constraintTop_toTopOf="@+id/rating">
 
         </TextView>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/heartIcon"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="35dp"
