@@ -21,6 +21,7 @@
 
     <style name="Theme.ECommerceStore.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
     </style>
 
     <style name="Theme.ECommerceStore.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />

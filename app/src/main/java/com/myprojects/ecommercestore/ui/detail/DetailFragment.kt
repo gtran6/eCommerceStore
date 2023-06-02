@@ -93,6 +93,12 @@ class DetailFragment : Fragment() {
                 })
                 addToCart.startAnimation(scaleAnimation)
             }
+
+            buyNow.setOnClickListener {
+                val item = args.data
+                val data = DetailFragmentDirections.actionDetailFragmentToCartFragment(item)
+                findNavController().navigate(data)
+            }
         }
         return root
     }
