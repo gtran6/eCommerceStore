@@ -83,6 +83,7 @@ class DetailFragment : Fragment() {
 
                     override fun onAnimationEnd(animation: Animation) {
                         cartViewModel.addItem(item)
+                        cartViewModel.addItemToCart(item)
                     }
 
                     override fun onAnimationRepeat(animation: Animation) {}

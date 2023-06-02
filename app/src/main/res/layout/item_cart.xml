@@ -34,6 +34,17 @@
 
         </androidx.cardview.widget.CardView>
 
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
         <TextView
             android:id="@+id/title"
             android:layout_width="180dp"

@@ -14,7 +14,8 @@ data class ApiResponseItem(
     val image: String,
     val price: Double,
     val rating: Rating,
-    val title: String
+    val title: String,
+    var quantity: Int = 0
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -23,7 +24,8 @@ data class ApiResponseItem(
         parcel.readString()!!,
         parcel.readDouble(),
         Gson().fromJson(parcel.readString(), Rating::class.java),
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -34,6 +36,7 @@ data class ApiResponseItem(
         parcel.writeDouble(price)
         parcel.writeString(Gson().toJson(rating))
         parcel.writeString(title)
+        parcel.writeInt(quantity)
     }
 
     override fun describeContents(): Int {

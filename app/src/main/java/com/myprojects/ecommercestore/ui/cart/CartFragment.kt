@@ -16,7 +16,7 @@ import com.myprojects.ecommercestore.ui.detail.DetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CartFragment : Fragment() {
+class CartFragment : Fragment(), CartAdapter.OnCancelClickListener {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
     private val cartViewModel: CartViewModel by viewModels()
@@ -31,19 +31,22 @@ class CartFragment : Fragment() {
             setRecyclerView(list)
         })
 
-        cartViewModel.cartItemCount.observe(viewLifecycleOwner, Observer { itemCount ->
 
-        })
+
         return root
     }
 
     private fun setRecyclerView(list: List<ApiResponseItem>) = _binding!!.cartRcv.apply {
-        adapter = CartAdapter(list)
+        adapter = CartAdapter(list, this@CartFragment)
         layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun OnCancelClick(item: ApiResponseItem) {
+        cartViewModel.deleteItem(item)
     }
 }

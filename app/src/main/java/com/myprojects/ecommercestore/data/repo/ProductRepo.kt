@@ -24,4 +24,6 @@ class ProductRepo @Inject constructor(val apiInterface: ApiInterface, val favDao
     suspend fun deleteItem(item: ApiResponseItem) = favDao.delete(item)
 
     fun getAllItems(): LiveData<List<ApiResponseItem>> = favDao.getFavoriteItems()
+
+    suspend fun updateItems(items: List<ApiResponseItem>) = favDao.update(items)
 }

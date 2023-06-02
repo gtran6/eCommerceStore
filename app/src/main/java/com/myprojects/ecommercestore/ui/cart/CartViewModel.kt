@@ -14,19 +14,20 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(val productRepo: ProductRepo) : ViewModel() {
 
     val allAddedItems: LiveData<List<ApiResponseItem>> = productRepo.getAllItems()
+    private val cartItems: MutableList<ApiResponseItem> = mutableListOf()
 
-    private val _cartItemCount = MutableLiveData<Int>()
-    val cartItemCount: LiveData<Int> = _cartItemCount
-
-    init {
-        updateCartItemCount()
+    fun addItemToCart(item: ApiResponseItem) {
+        viewModelScope.launch {
+            val existingItem = cartItems.find { it.id == item.id }
+            if (existingItem != null) {
+                existingItem.quantity++
+            } else {
+                item.quantity = 1
+                cartItems.add(item)
+            }
+            productRepo.updateItems(cartItems)
+        }
     }
-
-    private fun updateCartItemCount() {
-        val itemCount = allAddedItems.value?.size ?: 0
-        _cartItemCount.value = itemCount
-    }
-
     fun addItem(item: ApiResponseItem) {
         viewModelScope.launch {
             productRepo.insertItem(item)

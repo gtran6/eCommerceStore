@@ -8,7 +8,7 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.myprojects.ecommercestore.model.ApiResponseItem
 
-@Database(entities = [ApiResponseItem::class], version = 1, exportSchema = false)
+@Database(entities = [ApiResponseItem::class], version = 3, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class AppDatabase : RoomDatabase() {
 
