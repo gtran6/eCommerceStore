@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.myprojects.ecommercestore.databinding.FragmentDetailBinding
+import com.myprojects.ecommercestore.ui.cart.CartViewModel
 import com.myprojects.ecommercestore.ui.favorite.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +23,7 @@ class DetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: DetailFragmentArgs by navArgs()
     private val favoriteViewModel: FavoriteViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +65,7 @@ class DetailFragment : Fragment() {
                 heartIcon.startAnimation(scaleAnimation)
             }
             addToCart.setOnClickListener {
-
+                cartViewModel.addItem(item)
             }
         }
         return root
