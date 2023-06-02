@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -39,7 +41,26 @@ class DetailFragment : Fragment() {
             count.text = item.rating.count.toString()
 
             heartIcon.setOnClickListener {
-                favoriteViewModel.addItem(item)
+
+                val scaleAnimation = ScaleAnimation(
+                    1.0f, 0.8f,
+                    1.0f, 0.8f,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f
+                ).apply {
+                    duration = 200
+                    repeatMode = Animation.REVERSE
+                    repeatCount = 1
+                }
+                scaleAnimation.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+
+                    override fun onAnimationEnd(animation: Animation) {
+                        favoriteViewModel.addItem(item)
+                    }
+                    override fun onAnimationRepeat(animation: Animation) {}
+                })
+                heartIcon.startAnimation(scaleAnimation)
             }
         }
         return root
