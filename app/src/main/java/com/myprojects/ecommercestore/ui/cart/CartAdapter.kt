@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.myprojects.ecommercestore.databinding.ItemCartBinding
 import com.myprojects.ecommercestore.model.ApiResponseItem
 
-class CartAdapter(val list: List<ApiResponseItem>, val onCancelClickListener: OnCancelClickListener) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+class CartAdapter(var list: List<ApiResponseItem>, val onCancelClickListener: OnCancelClickListener) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     class CartViewHolder(var binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root)
     interface OnCancelClickListener {

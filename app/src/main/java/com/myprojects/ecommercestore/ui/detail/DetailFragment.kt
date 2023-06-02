@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.myprojects.ecommercestore.databinding.FragmentDetailBinding
 import com.myprojects.ecommercestore.ui.cart.CartViewModel
 import com.myprojects.ecommercestore.ui.favorite.FavoriteViewModel
@@ -83,6 +85,7 @@ class DetailFragment : Fragment() {
 
                     override fun onAnimationEnd(animation: Animation) {
                         cartViewModel.addItem(item)
+                        Toast.makeText(requireContext(), "Item Added", Toast.LENGTH_SHORT).show()
                         cartViewModel.addItemToCart(item)
                     }
 

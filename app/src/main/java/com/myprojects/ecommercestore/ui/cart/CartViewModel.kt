@@ -15,22 +15,30 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(val productRepo: ProductRepo, val cartAdapter: CartAdapter) : ViewModel() {
 
     val allAddedItems: LiveData<List<ApiResponseItem>> = productRepo.getAllItems()
-    private val cartItems: MutableList<ApiResponseItem> = mutableListOf()
+    val cartItems: MutableLiveData<MutableList<ApiResponseItem>> = MutableLiveData()
+
+    init {
+        cartItems.value = mutableListOf()
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun addItemToCart(item: ApiResponseItem) {
         viewModelScope.launch {
-            val existingItem = cartItems.find { it.id == item.id }
-            if (existingItem != null) {
+            val currentCartItems = cartItems.value ?: mutableListOf()
+            val existingItemIndex = currentCartItems.indexOfFirst { it.id == item.id }
+            if (existingItemIndex != -1) {
+                val existingItem = currentCartItems[existingItemIndex]
                 existingItem.quantity++
             } else {
                 item.quantity = 1
-                cartItems.add(item)
+                currentCartItems.add(item)
             }
-            cartAdapter.notifyDataSetChanged()
-            productRepo.updateItems(cartItems)
+            cartItems.value = currentCartItems // Notify observers about the updated list
+            productRepo.updateItems(currentCartItems) // Update the items in the repository
+            cartAdapter.notifyDataSetChanged() // Notify the adapter about the data change
         }
     }
+
     fun addItem(item: ApiResponseItem) {
         viewModelScope.launch {
             productRepo.insertItem(item)
