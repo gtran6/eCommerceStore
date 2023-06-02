@@ -64,6 +64,7 @@ class DetailFragment : Fragment() {
                 })
                 heartIcon.startAnimation(scaleAnimation)
             }
+
             addToCart.setOnClickListener {
                 cartViewModel.addItem(item)
             }

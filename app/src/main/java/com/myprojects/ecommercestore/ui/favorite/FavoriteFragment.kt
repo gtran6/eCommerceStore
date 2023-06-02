@@ -13,7 +13,6 @@ import com.myprojects.ecommercestore.databinding.FragmentFavBinding
 import com.myprojects.ecommercestore.model.ApiResponseItem
 import com.myprojects.ecommercestore.ui.home.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.observeOn
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment(), HomeAdapter.OnFavoriteClickListener, FavoriteAdapter.OnDeleteClickListener {

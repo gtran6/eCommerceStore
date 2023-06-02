@@ -21,6 +21,10 @@
         <action
             android:id="@+id/action_nav_home_to_nav_fav"
             app:destination="@id/nav_fav" />
+        <action
+            android:id="@+id/action_nav_home_to_cartFragment"
+            app:destination="@id/cartFragment" />
+
     </fragment>
 
     <fragment
@@ -63,6 +67,8 @@
         tools:layout="@layout/fragment_cart">
         <argument
             android:name="data"
-            app:argType="com.myprojects.ecommercestore.model.ApiResponseItem" />
+            android:defaultValue="@null"
+            app:argType="com.myprojects.ecommercestore.model.ApiResponseItem"
+            app:nullable="true"/>
     </fragment>
 </navigation>

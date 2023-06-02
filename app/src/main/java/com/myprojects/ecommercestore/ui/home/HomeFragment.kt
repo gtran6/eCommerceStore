@@ -9,10 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.myprojects.ecommercestore.databinding.FragmentHomeBinding
 import com.myprojects.ecommercestore.model.ApiResponseItem
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.myprojects.ecommercestore.databinding.FragmentHomeBinding
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), HomeAdapter.OnFavoriteClickListener{
@@ -21,6 +23,7 @@ class HomeFragment : Fragment(), HomeAdapter.OnFavoriteClickListener{
     private val binding get() = _binding!!
     private var search = ""
     private val homeViewModel: HomeViewModel by viewModels()
+    private val args: HomeFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +46,12 @@ class HomeFragment : Fragment(), HomeAdapter.OnFavoriteClickListener{
                 return false
             }
         })
+
+        _binding!!.fab.setOnClickListener {
+            val item = args.data
+            val data = HomeFragmentDirections.actionNavHomeToCartFragment(item)
+            findNavController().navigate(data)
+        }
 
         homeViewModel.getSingleProductData()
         homeViewModel.singleProductData.observe(viewLifecycleOwner, Observer { product ->
