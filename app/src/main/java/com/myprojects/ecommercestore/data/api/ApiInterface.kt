@@ -14,4 +14,7 @@ interface ApiInterface {
 
     @GET("/products/8")
     suspend fun getSingleProduct() : ApiResponseItem
+
+    @GET("/products/category/jewelery")
+    suspend fun getAllJewelery() : ApiResponse
 }

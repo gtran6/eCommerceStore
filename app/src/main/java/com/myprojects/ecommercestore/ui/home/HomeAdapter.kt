@@ -42,10 +42,10 @@ class HomeAdapter(val list: List<ApiResponseItem>, val onFavoriteClickListener: 
             }
             heartIcon.setOnClickListener {
                 val scaleAnimation = ScaleAnimation(
-                    1.0f, 0.8f, // Start and end scale X
-                    1.0f, 0.8f, // Start and end scale Y
-                    Animation.RELATIVE_TO_SELF, 0.5f, // Pivot X
-                    Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y
+                    1.0f, 0.8f,
+                    1.0f, 0.8f,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f
                 ).apply {
                     duration = 200
                     repeatMode = Animation.REVERSE

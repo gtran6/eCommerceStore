@@ -19,6 +19,7 @@ class HomeViewModel @Inject constructor(val productRepo: ProductRepo) : ViewMode
 
     val allProductData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
     val singleProductData: MutableLiveData<ApiResponseItem> = MutableLiveData()
+    val allJeweleryData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
 
     fun getAllProductData(sort: String) {
         viewModelScope.launch {
@@ -26,6 +27,16 @@ class HomeViewModel @Inject constructor(val productRepo: ProductRepo) : ViewMode
                 Log.e("api-products", "get: ${it.localizedMessage}")
             }.collect { list ->
                 allProductData.value = list
+            }
+        }
+    }
+
+    fun getAllJeweleryData() {
+        viewModelScope.launch {
+            productRepo.getAllJeweleryFromServer().catch {
+                Log.e("api-jewelery", "get: ${it.localizedMessage}")
+            }.collect { list ->
+                allJeweleryData.value = list
             }
         }
     }

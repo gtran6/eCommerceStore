@@ -110,7 +110,7 @@
                     app:toggle_text="healthButton" />
 
                 <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-                    android:id="@+id/jewelryButton"
+                    android:id="@+id/jeweleryButton"
                     style="@style/ToggleButtonTheme"
                     app:toggle_icon="@drawable/ic_books"
                     app:toggle_text="booksButton" />

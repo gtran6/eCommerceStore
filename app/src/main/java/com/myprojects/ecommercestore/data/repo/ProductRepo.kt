@@ -19,6 +19,10 @@ class ProductRepo @Inject constructor(val apiInterface: ApiInterface, val favDao
         emit(apiInterface.getSingleProduct())
     }
 
+    fun getAllJeweleryFromServer() : Flow<ApiResponse> = flow {
+        emit(apiInterface.getAllJewelery())
+    }
+
     suspend fun insertItem(item: ApiResponseItem) = favDao.insert(item)
 
     suspend fun deleteItem(item: ApiResponseItem) = favDao.delete(item)

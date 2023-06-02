@@ -64,6 +64,13 @@ class HomeFragment : Fragment(), HomeAdapter.OnFavoriteClickListener{
             setRecyclerView(list)
         })
 
+        _binding!!.jeweleryButton.setOnClickListener {
+            homeViewModel.getAllJeweleryData()
+            homeViewModel.allJeweleryData.observe(viewLifecycleOwner, Observer { list ->
+                setRecyclerView(list)
+            })
+        }
+
         return root
     }
 
