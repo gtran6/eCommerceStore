@@ -124,7 +124,6 @@
             android:layout_marginTop="12dp"
             android:lineSpacingExtra="7dp"
             android:textSize="14sp"
-            android:letterSpacing=".10"
             android:maxLines="6"
             android:ellipsize="end"
             android:justificationMode="inter_word"
@@ -150,10 +149,11 @@
         </androidx.appcompat.widget.AppCompatButton>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buyNow"
             android:layout_width="170dp"
             android:layout_height="60dp"
             android:layout_margin="20dp"
-            android:text="Buy Now"
+            android:text="@string/buy_now"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textAllCaps="false"

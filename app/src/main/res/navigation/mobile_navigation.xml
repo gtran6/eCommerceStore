@@ -52,5 +52,17 @@
         <action
             android:id="@+id/action_detailFragment_to_nav_fav"
             app:destination="@id/nav_fav" />
+        <action
+            android:id="@+id/action_detailFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.myprojects.ecommercestore.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart">
+        <argument
+            android:name="data"
+            app:argType="com.myprojects.ecommercestore.model.ApiResponseItem" />
     </fragment>
 </navigation>

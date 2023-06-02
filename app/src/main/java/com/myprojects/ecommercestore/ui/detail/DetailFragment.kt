@@ -62,6 +62,9 @@ class DetailFragment : Fragment() {
                 })
                 heartIcon.startAnimation(scaleAnimation)
             }
+            addToCart.setOnClickListener {
+
+            }
         }
         return root
     }

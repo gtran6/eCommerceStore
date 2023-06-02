@@ -21,4 +21,8 @@
     <string name="_3_4">3.4</string>
     <string name="_14_5">14.5</string>
     <string name="description">Description</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="checkout">Checkout</string>
+    <string name="check_out">Check Out</string>
+    <string name="title_title_title">Title title title</string>
 </resources>

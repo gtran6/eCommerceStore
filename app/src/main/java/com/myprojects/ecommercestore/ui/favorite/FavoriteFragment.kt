@@ -1,5 +1,6 @@
 package com.myprojects.ecommercestore.ui.favorite
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,9 +36,14 @@ class FavoriteFragment : Fragment(), HomeAdapter.OnFavoriteClickListener, Favori
         return root
     }
 
-    private fun setRecyclerView(list: List<ApiResponseItem>) = _binding!!.favRcv.apply {
-        adapter = FavoriteAdapter(list, this@FavoriteFragment)
-        layoutManager = LinearLayoutManager(requireContext())
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setRecyclerView(list: List<ApiResponseItem>) {
+        val favoriteAdapter = FavoriteAdapter(list, this@FavoriteFragment)
+        _binding!!.favRcv.apply {
+            adapter = favoriteAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            favoriteAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun onDestroyView() {

@@ -29,7 +29,7 @@
         <item name="layout_flexGrow">1</item>
         <item name="toggle_selectedBackgroundColor">@color/black</item>
         <item name="toggle_backgroundColor">@color/white</item>
-        <item name="toggle_iconColor">#B3B3C3</item>
+        <item name="toggle_iconColor">@color/grey</item>
         <item name="toggle_iconPadding">28dp</item>
         <item name="toggle_btnCornerRadius">8dp</item>
         <item name="android:gravity">center</item>
@@ -39,7 +39,7 @@
     </style>
 
     <style name="Widget.AppCompat.RatingBar.Small" parent="Base.Widget.AppCompat.RatingBar.Small">
-        <item name="android:progressTint">@color/green_neon</item>
+        <item name="android:progressTint">#FFC772</item>
     </style>
 
 </resources>
