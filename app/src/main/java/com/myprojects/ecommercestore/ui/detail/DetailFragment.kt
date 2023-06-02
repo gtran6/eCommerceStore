@@ -95,7 +95,9 @@ class DetailFragment : Fragment() {
             }
 
             buyNow.setOnClickListener {
-                val item = args.data
+                cartViewModel.addItem(item)
+                Toast.makeText(requireContext(), "Item Added", Toast.LENGTH_SHORT).show()
+                cartViewModel.addItemToCart(item)
                 val data = DetailFragmentDirections.actionDetailFragmentToCartFragment(item)
                 findNavController().navigate(data)
             }
