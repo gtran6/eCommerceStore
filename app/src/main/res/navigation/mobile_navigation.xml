@@ -70,5 +70,19 @@
             android:defaultValue="@null"
             app:argType="com.myprojects.ecommercestore.model.ApiResponseItem"
             app:nullable="true"/>
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.myprojects.ecommercestore.ui.checkout.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout">
+        <argument
+            android:name="data"
+            android:defaultValue="@null"
+            app:argType="com.myprojects.ecommercestore.model.ApiResponseItem"
+            app:nullable="true"/>
     </fragment>
 </navigation>

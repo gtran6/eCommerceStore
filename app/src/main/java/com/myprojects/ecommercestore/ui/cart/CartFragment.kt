@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.myprojects.ecommercestore.R
 import com.myprojects.ecommercestore.databinding.FragmentCartBinding
@@ -21,6 +23,7 @@ class CartFragment : Fragment(), CartAdapter.OnCancelClickListener {
     private val binding get() = _binding!!
     private val cartViewModel: CartViewModel by viewModels()
     private lateinit var cartAdapter: CartAdapter
+    private val args: CartFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +34,12 @@ class CartFragment : Fragment(), CartAdapter.OnCancelClickListener {
         cartViewModel.allAddedItems.observe(viewLifecycleOwner, Observer { list ->
             setRecyclerView(list)
         })
+
+        _binding!!.checkout.setOnClickListener {
+            val item = args.data
+            val data = CartFragmentDirections.actionCartFragmentToCheckoutFragment(item)
+            findNavController().navigate(data)
+        }
 
         return root
     }
