@@ -12,12 +12,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="14dp">
+        android:layout_marginBottom="8dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="140dp"
-            android:layout_height="160dp"
+            android:layout_height="140dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="6dp"
+                android:padding="20dp"
                 android:scaleType="fitCenter"
                 tools:src="@tools:sample/avatars">
 
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="@string/title_title_title"
             android:textColor="@color/black"
@@ -44,7 +44,7 @@
             android:textSize="17sp"
             android:maxLines="1"
             android:ellipsize="end"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="30dp"
             app:layout_constraintStart_toEndOf="@+id/cardView2"
             app:layout_constraintTop_toTopOf="@+id/cardView2">
@@ -69,7 +69,8 @@
             android:layout_height="wrap_content"
             android:text="@string/_14_5"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@+id/cardView2"
             app:layout_constraintStart_toStartOf="@+id/category"
             app:layout_constraintTop_toBottomOf="@+id/category">
@@ -80,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="12dp"
             app:layout_constraintBottom_toBottomOf="@+id/price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/price">
@@ -95,12 +96,12 @@
 
             <TextView
                 android:id="@+id/tvItemCount"
-                android:layout_width="40dp"
+                android:layout_width="35dp"
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="17sp"/>
 
             <Button
                 android:id="@+id/btnIncrease"
