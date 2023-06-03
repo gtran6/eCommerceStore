@@ -1,6 +1,7 @@
 package com.myprojects.ecommercestore.ui.cart
 
 import android.annotation.SuppressLint
+import android.icu.text.DecimalFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.myprojects.ecommercestore.data.repo.ProductRepo
 import com.myprojects.ecommercestore.model.ApiResponseItem
+import com.myprojects.ecommercestore.utils.combineLatest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,6 +30,21 @@ class CartViewModel @Inject constructor(val productRepo: ProductRepo, val cartAd
             total += item.price * item.quantity
         }
         total
+    }
+
+    val tax: LiveData<Double> = subtotal.map { subTotal ->
+        val taxRate = 0.0525
+        val taxValue = subTotal * taxRate
+        val decimalFormat = DecimalFormat("#.##")
+        decimalFormat.format(taxValue).toDouble()
+    }
+
+    val shipping: LiveData<Double> = MutableLiveData<Double>().apply {
+        value = 6.0
+    }
+
+    val bagTotal: LiveData<Double> = combineLatest(subtotal, tax, shipping) { subTotal, tax, shipping ->
+        subTotal + tax + shipping
     }
 
     @SuppressLint("NotifyDataSetChanged")
