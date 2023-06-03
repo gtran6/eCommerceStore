@@ -42,6 +42,13 @@ class CartFragment : Fragment(), CartAdapter.OnCancelClickListener {
 
         cartViewModel.subtotal.observe(viewLifecycleOwner, Observer { subtotal ->
             _binding!!.subTotal.text = "$${subtotal}"
+            _binding!!.tax.text = "$${subtotal * 5.25 / 100}"
+
+            if (subtotal <= 40.00) {
+                _binding!!.shipping.text = "$${0.00}"
+            } else {
+                _binding!!.shipping.text = "$${6.00}"
+            }
         })
 
         return root
