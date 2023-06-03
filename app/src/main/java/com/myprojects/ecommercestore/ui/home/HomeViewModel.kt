@@ -20,6 +20,9 @@ class HomeViewModel @Inject constructor(val productRepo: ProductRepo) : ViewMode
     val allProductData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
     val singleProductData: MutableLiveData<ApiResponseItem> = MutableLiveData()
     val allJeweleryData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
+    val allElectronicData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
+    val womenClothingData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
+    val menClothingData: MutableLiveData<List<ApiResponseItem>> = MutableLiveData()
 
     fun getAllProductData(sort: String) {
         viewModelScope.launch {
@@ -37,6 +40,36 @@ class HomeViewModel @Inject constructor(val productRepo: ProductRepo) : ViewMode
                 Log.e("api-jewelery", "get: ${it.localizedMessage}")
             }.collect { list ->
                 allJeweleryData.value = list
+            }
+        }
+    }
+
+    fun getAllElectronicData() {
+        viewModelScope.launch {
+            productRepo.getAllElectronicFromServer().catch {
+                Log.e("api-electronic", "get: ${it.localizedMessage}")
+            }.collect { list ->
+                allElectronicData.value = list
+            }
+        }
+    }
+
+    fun getWomenClothingData() {
+        viewModelScope.launch {
+            productRepo.getWomenClothingFromServer().catch {
+                Log.e("api-women", "get: ${it.localizedMessage}")
+            }.collect { list ->
+                womenClothingData.value = list
+            }
+        }
+    }
+
+    fun getMenClothingData() {
+        viewModelScope.launch {
+            productRepo.getMenClothingFromServer().catch {
+                Log.e("api-men", "get: ${it.localizedMessage}")
+            }.collect { list ->
+                menClothingData.value = list
             }
         }
     }

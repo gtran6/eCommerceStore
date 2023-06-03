@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -69,6 +70,31 @@ class HomeFragment : Fragment(), HomeAdapter.OnFavoriteClickListener{
             homeViewModel.allJeweleryData.observe(viewLifecycleOwner, Observer { list ->
                 setRecyclerView(list)
             })
+            Toast.makeText(requireContext(), "Jewelery", Toast.LENGTH_SHORT).show()
+        }
+
+        _binding!!.electronicButton.setOnClickListener {
+            homeViewModel.getAllElectronicData()
+            homeViewModel.allElectronicData.observe(viewLifecycleOwner, Observer { list ->
+                setRecyclerView(list)
+            })
+            Toast.makeText(requireContext(), "Electronics", Toast.LENGTH_SHORT).show()
+        }
+
+        _binding!!.womenButton.setOnClickListener {
+            homeViewModel.getWomenClothingData()
+            homeViewModel.womenClothingData.observe(viewLifecycleOwner, Observer { list ->
+                setRecyclerView(list)
+            })
+            Toast.makeText(requireContext(), "Women's Clothing", Toast.LENGTH_SHORT).show()
+        }
+
+        _binding!!.menButton.setOnClickListener {
+            homeViewModel.getMenClothingData()
+            homeViewModel.menClothingData.observe(viewLifecycleOwner, Observer { list ->
+                setRecyclerView(list)
+            })
+            Toast.makeText(requireContext(), "Men's Clothing", Toast.LENGTH_SHORT).show()
         }
 
         return root

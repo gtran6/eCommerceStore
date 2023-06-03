@@ -22,7 +22,6 @@ class CartFragment : Fragment(), CartAdapter.OnCancelClickListener {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
     private val cartViewModel: CartViewModel by viewModels()
-    private lateinit var cartAdapter: CartAdapter
     private val args: CartFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -40,6 +39,10 @@ class CartFragment : Fragment(), CartAdapter.OnCancelClickListener {
             val data = CartFragmentDirections.actionCartFragmentToCheckoutFragment(item)
             findNavController().navigate(data)
         }
+
+        cartViewModel.subtotal.observe(viewLifecycleOwner, Observer { subtotal ->
+            _binding!!.subTotal.text = "$${subtotal}"
+        })
 
         return root
     }

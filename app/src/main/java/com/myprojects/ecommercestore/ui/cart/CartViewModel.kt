@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.myprojects.ecommercestore.data.repo.ProductRepo
 import com.myprojects.ecommercestore.model.ApiResponseItem
@@ -21,6 +22,14 @@ class CartViewModel @Inject constructor(val productRepo: ProductRepo, val cartAd
         cartItems.value = mutableListOf()
     }
 
+    val subtotal: LiveData<Double> = allAddedItems.map { items ->
+        var total = 0.0
+        for (item in items) {
+            total += item.price * item.quantity
+        }
+        total
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     fun addItemToCart(item: ApiResponseItem) {
         viewModelScope.launch {
@@ -33,9 +42,9 @@ class CartViewModel @Inject constructor(val productRepo: ProductRepo, val cartAd
                 item.quantity = 1
                 currentCartItems.add(item)
             }
-            cartItems.value = currentCartItems // Notify observers about the updated list
-            productRepo.updateItems(currentCartItems) // Update the items in the repository
-            cartAdapter.notifyDataSetChanged() // Notify the adapter about the data change
+            cartItems.value = currentCartItems
+            productRepo.updateItems(currentCartItems)
+            cartAdapter.notifyDataSetChanged()
         }
     }
 
